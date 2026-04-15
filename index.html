@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lulox Skills — Midnight Project Building</title>
-  <meta name="description" content="A polished landing page for the Midnight Project Building skill: build Midnight / Compact projects with docs-first workflows, privacy-aware design, and iterative shipping." />
+  <title>Lulox Skills</title>
+  <meta name="description" content="Catálogo visual de skills de lulox-skills: qué hace cada skill y cómo importarla al agente." />
   <style>
     :root {
       --bg: #07111f;
@@ -15,7 +15,6 @@
       --muted: #97b4d3;
       --accent: #78d8ff;
       --accent2: #a78bfa;
-      --good: #6ee7b7;
     }
     * { box-sizing: border-box; }
     body {
@@ -28,142 +27,119 @@
       color: var(--text);
       min-height: 100vh;
     }
-    .wrap { max-width: 1120px; margin: 0 auto; padding: 32px 20px 56px; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 32px 20px 64px; }
+    .nav, .hero, .skill, .command-box {
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 18px 52px rgba(0,0,0,.28);
+    }
     .nav {
       display: flex; justify-content: space-between; align-items: center; gap: 20px;
-      padding: 14px 18px; border: 1px solid var(--border); border-radius: 18px;
-      background: rgba(6, 14, 26, 0.62); backdrop-filter: blur(10px);
-      box-shadow: 0 12px 36px rgba(0,0,0,.25);
+      padding: 14px 18px; border-radius: 18px; background: rgba(6, 14, 26, 0.62);
     }
-    .brand { display: flex; flex-direction: column; gap: 4px; }
-    .brand strong { font-size: 15px; letter-spacing: .3px; }
+    .brand strong { display: block; font-size: 15px; letter-spacing: .3px; }
     .brand span { color: var(--muted); font-size: 13px; }
     .pill {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 10px 14px; border-radius: 999px; border: 1px solid var(--border);
-      color: var(--text); text-decoration: none; background: rgba(255,255,255,0.03);
+      display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px;
+      border-radius: 999px; border: 1px solid var(--border); color: var(--text);
+      text-decoration: none; background: rgba(255,255,255,0.03);
     }
-    .hero {
-      display: grid; grid-template-columns: 1.25fr .95fr; gap: 22px; margin-top: 24px;
-    }
-    .panel {
-      border: 1px solid var(--border); border-radius: 24px; background: var(--card);
-      backdrop-filter: blur(12px); box-shadow: 0 18px 52px rgba(0,0,0,.28);
-    }
-    .hero-main { padding: 34px; }
+    .hero { padding: 34px; margin-top: 22px; }
     .eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: .18em; font-size: 12px; font-weight: 700; }
-    h1 { margin: 12px 0 14px; font-size: clamp(40px, 5vw, 68px); line-height: .96; }
-    .lead { font-size: 18px; line-height: 1.65; color: #d8e7f7; max-width: 62ch; }
-    .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-      padding: 14px 18px; border-radius: 14px; text-decoration: none; font-weight: 700;
-      border: 1px solid transparent;
+    h1 { margin: 12px 0 14px; font-size: clamp(36px, 5vw, 58px); line-height: .98; }
+    .lead { font-size: 18px; line-height: 1.65; color: #d8e7f7; max-width: 65ch; }
+    .hero p:last-child { color: var(--muted); margin-bottom: 0; }
+    .skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 22px; }
+    .skill { padding: 22px; }
+    .skill h2 { margin: 10px 0 10px; font-size: 26px; }
+    .skill p { margin: 0; color: var(--muted); line-height: 1.65; }
+    .meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .tag {
+      display: inline-flex; align-items: center; padding: 8px 10px; border-radius: 999px;
+      font-size: 12px; color: #dff4ff; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
     }
-    .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #03101d; }
-    .btn.secondary { background: rgba(255,255,255,.04); color: var(--text); border-color: var(--border); }
-    .hero-side { padding: 22px; display: grid; gap: 14px; }
-    .stat { padding: 16px; border-radius: 18px; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06); }
-    .stat small { color: var(--muted); display: block; margin-bottom: 8px; }
-    .stat strong { font-size: 17px; }
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 18px; }
-    .card { padding: 20px; min-height: 168px; }
-    .card h3 { margin: 4px 0 10px; }
-    .card p { color: var(--muted); line-height: 1.55; margin: 0; }
-    .section { margin-top: 22px; padding: 24px; }
-    .timeline { display: grid; gap: 12px; margin-top: 10px; }
-    .step { display: grid; grid-template-columns: 86px 1fr; gap: 16px; align-items: start; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.07); }
-    .step:first-child { border-top: 0; padding-top: 0; }
-    .step b { color: var(--good); }
-    code, pre {
-      background: rgba(2, 8, 18, .72); border: 1px solid rgba(255,255,255,.08);
-      border-radius: 16px;
+    .command-box { margin-top: 18px; overflow: hidden; }
+    .command-head {
+      display: flex; justify-content: space-between; align-items: center; gap: 10px;
+      padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,.08); color: var(--muted); font-size: 13px;
     }
-    pre { overflow: auto; padding: 16px; color: #d7f1ff; line-height: 1.5; }
-    .footer { margin-top: 24px; color: var(--muted); font-size: 13px; text-align: center; }
+    pre {
+      margin: 0; padding: 16px; overflow: auto; white-space: pre-wrap; word-break: break-word;
+      background: rgba(2, 8, 18, .72); color: #d7f1ff; line-height: 1.55; font-size: 13px;
+    }
+    .footer { margin-top: 22px; color: var(--muted); font-size: 13px; text-align: center; }
     @media (max-width: 900px) {
-      .hero, .grid { grid-template-columns: 1fr; }
+      .skills { grid-template-columns: 1fr; }
       .nav { flex-direction: column; align-items: flex-start; }
-      .step { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <header class="nav panel">
+    <header class="nav">
       <div class="brand">
         <strong>Lulox Skills</strong>
-        <span>Midnight Project Building · Hermes / Carly / Sancho ready</span>
+        <span>Catálogo visual de skills para Hermes, Carly y otros agentes</span>
       </div>
-      <a class="pill" href="https://github.com/luloxi/lulox-skills" target="_blank" rel="noreferrer">View repo ↗</a>
+      <a class="pill" href="https://github.com/luloxi/lulox-skills" target="_blank" rel="noreferrer">Ver repo ↗</a>
     </header>
 
     <section class="hero">
-      <div class="hero-main panel">
-        <div class="eyebrow">Midnight / Compact workflow</div>
-        <h1>Build Midnight projects like a real product.</h1>
-        <p class="lead">
-          This skill turns Midnight development into a repeatable workflow: live docs first, clear onchain/offchain
-          boundaries, privacy-aware design, strong scaffolding, and a path to ship something polished instead of a toy demo.
-        </p>
-        <div class="cta">
-          <a class="btn primary" href="#workflow">See workflow</a>
-          <a class="btn secondary" href="#stack">Recommended stack</a>
-        </div>
-      </div>
-
-      <aside class="hero-side panel">
-        <div class="stat">
-          <small>Primary use</small>
-          <strong>Midnight / Compact project scaffolds</strong>
-        </div>
-        <div class="stat">
-          <small>Shared across</small>
-          <strong>Hermes · Carly · Sancho Panza</strong>
-        </div>
-        <div class="stat">
-          <small>Design bias</small>
-          <strong>Docs-first, commit-light, ship-ready</strong>
-        </div>
-      </aside>
+      <div class="eyebrow">Skill library</div>
+      <h1>Qué hace cada skill, sin vueltas.</h1>
+      <p class="lead">Esta web muestra solamente de qué se trata cada skill y cómo darle el archivo al agente para que la aprenda desde GitHub. La idea es simple: ver, elegir y cargar.</p>
+      <p>No se exponen credenciales ni secretos. Solo la descripción de cada skill y un comando listo para importar el archivo SKILL.md correcto desde el repo.</p>
     </section>
 
-    <section class="grid" id="stack">
-      <div class="card panel">
-        <div class="eyebrow">1. Docs</div>
-        <h3>Live docs first</h3>
-        <p>Use current Midnight docs, hello-world guides, and MCP posts before writing code so the workflow stays current.</p>
-      </div>
-      <div class="card panel">
-        <div class="eyebrow">2. Architecture</div>
-        <h3>Onchain/offchain split</h3>
-        <p>Keep commitments and verification onchain, raw data offchain, and document the reveal path clearly.</p>
-      </div>
-      <div class="card panel">
-        <div class="eyebrow">3. Product</div>
-        <h3>Polished by default</h3>
-        <p>Favor a clean landing page, visible state, and a production-like feel rather than a demo-looking scaffold.</p>
-      </div>
+    <section class="skills">
+      <article class="skill">
+        <div class="eyebrow">Midnight</div>
+        <h2>midnight-project-building</h2>
+        <p>Build Midnight Network / Compact projects end-to-end with a product-first workflow: repo scaffolding, docs lookup, contract/app architecture, testing, deployment, and iterative improvement. Use when the user wants to start or evolve a Midnight project, or wants a reusable skill for Hermes, Carly, and Sancho Panza.</p>
+        <div class="meta"><span class="tag">Producto</span><span class="tag">Midnight</span><span class="tag">Reusable</span></div>
+        <div class="command-box">
+          <div class="command-head"><span>Comando para que tu agente la aprenda</span></div>
+          <pre>mkdir -p ~/.hermes/skills/midnight-project-building &amp;&amp; curl -fsSL https://raw.githubusercontent.com/luloxi/lulox-skills/main/midnight-project-building/SKILL.md -o ~/.hermes/skills/midnight-project-building/SKILL.md</pre>
+        </div>
+      </article>
+
+      <article class="skill">
+        <div class="eyebrow">Execution</div>
+        <h2>lulox-fast-product-loop</h2>
+        <p>Use for lulox-style coding requests: fast implementation over discussion, mixed EN/ES collaboration, Next.js or web UI polish, mobile/desktop cleanup, and live log-driven debugging. Start local-first, but allow push/deploy inference later when the session clearly becomes a live mobile-preview iteration loop.</p>
+        <div class="meta"><span class="tag">Product loop</span><span class="tag">UI polish</span><span class="tag">Fast execution</span></div>
+        <div class="command-box">
+          <div class="command-head"><span>Comando para que tu agente la aprenda</span></div>
+          <pre>mkdir -p ~/.hermes/skills/lulox-fast-product-loop &amp;&amp; curl -fsSL https://raw.githubusercontent.com/luloxi/lulox-skills/main/fast-product-loop/SKILL.md -o ~/.hermes/skills/lulox-fast-product-loop/SKILL.md</pre>
+        </div>
+      </article>
+
+      <article class="skill">
+        <div class="eyebrow">Research</div>
+        <h2>internet-research-toolbox</h2>
+        <p>Free-first toolbox for exploring the internet: search, extract, browse, inspect pages, and scrape public content with native Hermes tools only. Use when the user wants current information, tweet/news monitoring, web page reading, or lightweight scraping without paid APIs.</p>
+        <div class="meta"><span class="tag">Web</span><span class="tag">Search</span><span class="tag">Scraping</span></div>
+        <div class="command-box">
+          <div class="command-head"><span>Comando para que tu agente la aprenda</span></div>
+          <pre>mkdir -p ~/.hermes/skills/internet-research-toolbox &amp;&amp; curl -fsSL https://raw.githubusercontent.com/luloxi/lulox-skills/main/internet-research-toolbox/SKILL.md -o ~/.hermes/skills/internet-research-toolbox/SKILL.md</pre>
+        </div>
+      </article>
+
+      <article class="skill">
+        <div class="eyebrow">X / Twitter</div>
+        <h2>twitter-research-without-secrets</h2>
+        <p>Read, monitor, and research public X/Twitter content with a layered workflow that avoids exposing credentials in repos. Use when the goal is tweet reading, account monitoring, or research prep rather than account administration.</p>
+        <div class="meta"><span class="tag">Twitter</span><span class="tag">Monitoring</span><span class="tag">No secrets in repo</span></div>
+        <div class="command-box">
+          <div class="command-head"><span>Comando para que tu agente la aprenda</span></div>
+          <pre>mkdir -p ~/.hermes/skills/twitter-research-without-secrets &amp;&amp; curl -fsSL https://raw.githubusercontent.com/luloxi/lulox-skills/main/twitter-research-without-secrets/SKILL.md -o ~/.hermes/skills/twitter-research-without-secrets/SKILL.md</pre>
+        </div>
+      </article>
     </section>
 
-    <section class="section panel" id="workflow">
-      <div class="eyebrow">Workflow</div>
-      <h2 style="margin:10px 0 4px; font-size: 30px;">A simple loop that keeps improving</h2>
-      <div class="timeline">
-        <div class="step"><b>1</b><div>Clarify the project goal and whether it needs frontend, backend, contracts, or all three.</div></div>
-        <div class="step"><b>2</b><div>Pull current Midnight docs and any relevant MCP references before coding.</div></div>
-        <div class="step"><b>3</b><div>Scaffold the repo with contracts, apps, packages, docs, and tests.</div></div>
-        <div class="step"><b>4</b><div>Ship the smallest working version, verify it, then patch the skill with what was learned.</div></div>
-      </div>
-    </section>
-
-    <section class="section panel">
-      <div class="eyebrow">Prompt template</div>
-      <pre>Build this as a real Midnight project: first find the live docs, then define the onchain/offchain split,
-then scaffold the repo, then implement the smallest working version, then add tests and docs.</pre>
-    </section>
-
-    <p class="footer">Built for the lulox-skills repo · Public site via GitHub Pages</p>
+    <p class="footer">Hecho para ver skills rápido y cargarlas desde GitHub con un solo comando.</p>
   </div>
 </body>
 </html>
